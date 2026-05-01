@@ -95,7 +95,7 @@ class SolidarityClient:
         while True:
             payload = self.get('/event_rsvps', params=params)
             rows = payload.get('data', [])
-            total += len(rows)
+            total += sum(1 for r in rows if r.get('is_attending') != 'no')
             if len(rows) < PAGE_SIZE:
                 return total
             params['_offset'] += PAGE_SIZE
