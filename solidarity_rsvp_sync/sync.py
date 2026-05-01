@@ -10,7 +10,7 @@ from .utils import create_logger, ok, warn, err, hl
 
 
 def run_sync(api_token, credentials_path, sheet_id, sheet_name):
-    logger = create_logger('[sync]')
+    logger = create_logger('[solidarity-rsvp-sync]')
 
     logger(f'using service account {hl(read_service_account_email(credentials_path))}')
     logger(f'opening sheet {hl(sheet_id)} / tab {hl(sheet_name)}')
