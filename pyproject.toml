@@ -1,0 +1,25 @@
+[project]
+name = "solidarity-rsvp-sync"
+version = "0.1.0"
+description = "Sync Solidarity Tech RSVP counts into a Google sheet."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Jeremy Freeman", email = "jeremy.freeman@mac.com" }]
+license = { text = "MIT" }
+dependencies = [
+    "click>=8.1",
+    "python-dotenv>=1.0",
+    "requests>=2.32",
+    "gspread>=6.2",
+    "yachalk>=0.1.7",
+]
+
+[project.scripts]
+solidarity-rsvp-sync = "solidarity_rsvp_sync.cli:cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["solidarity_rsvp_sync"]
