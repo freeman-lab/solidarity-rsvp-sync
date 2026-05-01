@@ -6,13 +6,13 @@
 
 Campaigns using Solidarity Tech often manage a separate spreadsheet for tracking their events (with additional metadata like meetup location, turf info, field leads, etc.). It's useful to have RSVP counts regularly synced in that spreadsheet.
 
-With this tool, if your spreadsheet has columns for "Event ID" (and optionally "Session ID") and "RSVP Count", this tool will use the Solidarity Tech API populate the "RSVP Count" column with counts for each combination of event and session ID. 
+With this tool, if your spreadsheet has columns for "Event ID" (and optionally "Session ID") and "RSVP Count", this tool will use the Solidarity Tech API to populate the "RSVP Count" column with counts for each combination of event and session ID. 
 
 It's a simple CLI that, once configured, will run whenver you want. Most teams will want to run it every day (or hour).
 
 ## Prerequisites
 
-You need a Solidarity Tech account and an API token (we recommend creating one just for this purposes).
+You need a Solidarity Tech account and an API token (we recommend creating one just for this purpose).
 
 You also need a Google service worker account to read/write to your Google sheet. This is mildly annoying to setup, but is a one time cost. See below for a detailed guide. It'll give you an email address that you share your sheet with, and it'll give you a credentials JSON file. 
 
@@ -58,7 +58,7 @@ This part is the most complicated, but here's a step by step:
 1. Go to [console.cloud.google.com](https://console.cloud.google.com) and create a new project (or use an existing one).
 2. From APIs & Services → Library, enable both the **Google Sheets API** and the **Google Drive API**.
 3. From IAM & Admin → Service Accounts, click "Create service account". Pick any name; no roles needed.
-4. On the new service account, go to Keys → Add Key → Create new key → JSON. A credentials file will download — save it somewhere safe and point `GOOGLE_CREDENTIALS` at it.
+4. On the new service account, go to Keys → Add Key → Create new key → JSON. A credentials JSON file will download. Save it somewhere safe and point `GOOGLE_CREDENTIALS` at it.
 5. Copy the service account's email address — it looks like `something@project.iam.gserviceaccount.com`.
 6. Open your sheet in Google Sheets and **share it with that email** as an Editor.
 
@@ -66,7 +66,7 @@ The same credentials JSON works for every sheet you share with the service accou
 
 ### Protected ranges
 
-If your sheet uses **protected ranges** on the RSVP Count column, Editor access on the sheet alone is not enough. You need to either give the service account edit access to the protected range, or remove the protection on the RSVP Count column. If you skip this you'll see `You are trying to edit a protected cell or object` on the write step.
+If your sheet uses protected ranges on the RSVP Count column, Editor access on the sheet alone is not enough. You need to either give the service account edit access to the protected range, or remove the protection on the RSVP Count column. If you skip this you'll see `You are trying to edit a protected cell or object` on the write step.
 
 ## How it works
 
